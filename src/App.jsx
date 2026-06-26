@@ -174,7 +174,7 @@ function App() {
         >
           {/* Mockup Container */}
           <div className="relative z-10 w-full aspect-[1/2] rounded-[44px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border-[10px] border-white bg-white">
-            <img src="/mockup.jpg" alt="Morpho Cafe App Interface" className="w-full h-full object-cover scale-[1.3] origin-center" />
+            <img src="/mockup.jpg" alt="Morpho Cafe App Interface" className="w-full h-full object-cover scale-[1.3] object-[50%_35%] origin-center" />
           </div>
           
           {/* Floating Organic Cards */}
