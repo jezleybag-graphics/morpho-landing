@@ -206,18 +206,21 @@ function App() {
               title="Cafe-Quality Freshness"
               description="We pack every order with extra care, ensuring your cold drinks stay frosty and your hot meals arrive warm."
               color="bg-[#E6F3F1] text-primary"
+              accent="from-primary/5 via-white to-white"
             />
             <FeatureCard 
               icon="bicycle"
               title="Brought to You"
               description="Ready to enjoy at home. Track your delivery in real-time straight from Morpho Cafe & Studio."
               color="bg-[#FAF5ED] text-accent"
+              accent="from-accent/5 via-white to-white"
             />
             <FeatureCard 
               icon="star"
               title="Good Vibes, Anywhere"
               description="Save your favorites, track your orders easily, and unlock exclusive app-only deals and promos."
               color="bg-[#F0FDF4] text-success"
+              accent="from-success/5 via-white to-white"
             />
           </div>
         </div>
@@ -349,17 +352,27 @@ function App() {
   )
 }
 
-function FeatureCard({ icon, title, description, color }) {
+function FeatureCard({ icon, title, description, color, accent }) {
   return (
     <motion.div 
-      whileHover={{ y: -5 }}
-      className="bg-white p-8 rounded-[24px] border border-border/40 shadow-sm hover:shadow-xl transition-all duration-300"
+      whileHover={{ y: -8, scale: 1.02 }}
+      className="group relative overflow-hidden bg-white p-8 md:p-10 rounded-[32px] border border-border/50 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(1,62,55,0.08)] hover:border-primary/20 transition-all duration-500"
     >
-      <div className={`w-14 h-14 rounded-[16px] flex items-center justify-center mb-6 ${color}`}>
-        <ion-icon name={icon} style={{ fontSize: '28px' }}></ion-icon>
+      {/* Hover Gradient Background */}
+      <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br ${accent}`} />
+      
+      {/* Decorative Large Faded Icon */}
+      <div className="absolute -bottom-6 -right-6 text-[140px] text-surface-subtle group-hover:text-primary/5 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
+        <ion-icon name={icon}></ion-icon>
       </div>
-      <h3 className="text-[18px] font-display font-bold mb-3 text-primary-dark">{title}</h3>
-      <p className="text-[15px] text-text-secondary leading-[1.6]">{description}</p>
+
+      <div className="relative z-10">
+        <div className={`w-16 h-16 rounded-[20px] flex items-center justify-center mb-8 ${color} shadow-sm group-hover:scale-110 transition-transform duration-500`}>
+          <ion-icon name={icon} style={{ fontSize: '32px' }}></ion-icon>
+        </div>
+        <h3 className="text-[20px] font-display font-extrabold mb-3 text-primary-dark group-hover:text-primary transition-colors duration-500">{title}</h3>
+        <p className="text-[15px] text-text-secondary leading-[1.7] font-medium">{description}</p>
+      </div>
     </motion.div>
   )
 }
