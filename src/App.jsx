@@ -229,6 +229,7 @@ function App() {
               image="/delivery-image.jpg"
               title="Brought to You"
               description="Ready to enjoy at home. Track your delivery in real-time straight from Morpho Cafe & Studio."
+              imagePosition="50% 30%"
             />
             <FeatureCard 
               image="/feature3.webp"
@@ -378,7 +379,7 @@ function App() {
   )
 }
 
-function FeatureCard({ image, title, description }) {
+function FeatureCard({ image, title, description, imagePosition = "center" }) {
   return (
     <motion.div 
       whileHover={{ y: -8, scale: 1.02 }}
@@ -391,6 +392,7 @@ function FeatureCard({ image, title, description }) {
           src={image} 
           alt={title} 
           className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+          style={{ objectPosition: imagePosition }}
         />
       </div>
 
