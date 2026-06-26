@@ -22,6 +22,16 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const handleAndroidClick = (e) => {
+    // If they are in Facebook Messenger/Instagram, force a native intent.
+    // This forces the OS to break out of the in-app browser and open the native Google Play App,
+    // which usually triggers the Messenger "You are leaving our app" warning prompt.
+    if (isInAppBrowser) {
+      e.preventDefault();
+      window.location.href = "intent://details?id=morphocafe.app#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dmorphocafe.app;end;";
+    }
+  }
+
   // Keyboard accessibility for modal
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -100,6 +110,7 @@ function App() {
               href="https://play.google.com/store/apps/details?id=morphocafe.app"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={handleAndroidClick}
               className="w-full sm:w-auto flex items-center justify-center gap-3 bg-primary text-white px-6 py-4 rounded-[16px] font-semibold hover:bg-primary-dark transition-all shadow-[0_8px_20px_rgba(1,62,55,0.2)] hover:shadow-[0_12px_24px_rgba(1,62,55,0.3)] hover:-translate-y-0.5 active:scale-95 focus-visible:ring-4 focus-visible:ring-accent/50 outline-none"
             >
               <ion-icon name="logo-google-playstore" style={{ fontSize: '24px' }}></ion-icon>
@@ -264,6 +275,7 @@ function App() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a 
               href="https://play.google.com/store/apps/details?id=morphocafe.app" 
+              onClick={handleAndroidClick}
               className="bg-white text-primary-dark px-8 py-4 rounded-[16px] font-bold text-[16px] hover:bg-surface-muted transition-transform active:scale-95 w-full sm:w-auto shadow-xl focus-visible:ring-4 focus-visible:ring-white/50 outline-none"
             >
               Get it for Android
