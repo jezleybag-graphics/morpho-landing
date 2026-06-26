@@ -229,7 +229,7 @@ function App() {
               image="/delivery-image.jpg"
               title="Brought to You"
               description="Ready to enjoy at home. Track your delivery in real-time straight from Morpho Cafe & Studio."
-              imagePosition="50% 30%"
+              imagePosition="50% 70%"
             />
             <FeatureCard 
               image="/feature3.webp"
