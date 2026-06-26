@@ -353,7 +353,7 @@ function App() {
               <ol className="space-y-5 mb-8">
                 <li className="flex gap-4 items-start">
                   <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-[13px] shrink-0 mt-0.5">1</div>
-                  <div className="text-[14px] leading-relaxed text-text-primary">Open <strong className="font-bold">order.morphocafe.com</strong> in Safari.</div>
+                  <div className="text-[14px] leading-relaxed text-text-primary">Open <strong className="font-bold">morpho-cafe-app.vercel.app</strong> in Safari.</div>
                 </li>
                 <li className="flex gap-4 items-start">
                   <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-[13px] shrink-0 mt-0.5">2</div>
@@ -366,7 +366,9 @@ function App() {
               </ol>
               
               <a 
-                href="https://order.morphocafe.com"
+                href="https://morpho-cafe-app.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full flex items-center justify-center bg-primary text-white font-bold py-4 rounded-[14px] text-[15px] hover:bg-primary-dark transition-all active:scale-95 focus-visible:ring-4 focus-visible:ring-primary/30 outline-none"
               >
                 Open Web App
