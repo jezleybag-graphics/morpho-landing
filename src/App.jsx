@@ -76,14 +76,14 @@ function App() {
         >
           <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-md text-primary-dark font-bold text-[13px] px-4 py-2 rounded-full mb-6 border border-primary/10 shadow-sm">
             <ion-icon name="cafe-outline"></ion-icon>
-            <span>Crafted with care. Delivered to you.</span>
+            <span>Sip the moment, one cup at a time.</span>
           </div>
           <h1 className="text-[32px] md:text-[44px] lg:text-[52px] font-display font-extrabold tracking-tight leading-[1.15] mb-6 text-primary-dark">
             Cuyapo's first-ever <br className="hidden md:block" />
             <span className="text-gradient-gold">cafe delivery app.</span>
           </h1>
           <p className="text-[16px] md:text-[18px] text-text-secondary mb-10 leading-[1.6] max-w-lg mx-auto lg:mx-0">
-            Sip the moment, one cup at a time. Your favorite handcrafted coffee and signature meals from Morpho Cafe & Studio, now just a tap away.
+            Bring the true cafe experience home. Enjoy your favorite handcrafted coffee and signature meals from Morpho Cafe & Studio, now just a tap away.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
