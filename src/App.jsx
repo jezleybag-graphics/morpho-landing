@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { useCommunityStats } from './hooks/useCommunityStats'
 
 function App() {
-  const [isIOSModalOpen, setIsIOSModalOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [isInAppBrowser, setIsInAppBrowser] = useState(false)
   const { count, avatars, isLoading } = useCommunityStats()
@@ -32,16 +31,7 @@ function App() {
     }
   }
 
-  // Keyboard accessibility for modal
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && isIOSModalOpen) {
-        setIsIOSModalOpen(false)
-      }
-    }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isIOSModalOpen])
+  // Modal removed
 
   return (
     <div className="min-h-screen bg-surface-muted text-text-primary overflow-x-hidden relative font-sans">
@@ -120,8 +110,10 @@ function App() {
               </div>
             </a>
             
-            <button 
-              onClick={() => setIsIOSModalOpen(true)}
+            <a 
+              href="https://morpho-cafe-app.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white text-primary-dark border border-border/80 px-6 py-4 rounded-[16px] font-semibold hover:bg-surface-subtle transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-95 focus-visible:ring-4 focus-visible:ring-primary/20 outline-none"
             >
               <ion-icon name="logo-apple" style={{ fontSize: '24px' }}></ion-icon>
@@ -129,7 +121,7 @@ function App() {
                 <span className="text-[11px] leading-none text-text-tertiary uppercase tracking-wider font-bold mb-0.5">Install on</span>
                 <span className="text-[16px] leading-tight font-display font-bold">iOS (Web App)</span>
               </div>
-            </button>
+            </a>
           </div>
           
           <div className="flex items-center gap-4 animate-fade-in mt-10" style={{ animationDelay: '0.4s' }}>
@@ -281,12 +273,14 @@ function App() {
             >
               Get it for Android
             </a>
-            <button 
-              onClick={() => setIsIOSModalOpen(true)} 
-              className="bg-primary-dark text-white border-2 border-white/20 px-8 py-4 rounded-[16px] font-bold text-[16px] hover:bg-white/10 transition-colors w-full sm:w-auto focus-visible:ring-4 focus-visible:ring-white/50 outline-none"
+            <a 
+              href="https://morpho-cafe-app.vercel.app/" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto flex items-center justify-center bg-primary-dark text-white border-2 border-white/20 px-8 py-4 rounded-[16px] font-bold text-[16px] hover:bg-white/10 transition-colors focus-visible:ring-4 focus-visible:ring-white/50 outline-none"
             >
               Install iOS Web App
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -304,70 +298,7 @@ function App() {
         </div>
       </footer>
 
-      {/* iOS Install Modal (Accessible) */}
-      <AnimatePresence>
-        {isIOSModalOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-            <motion.div 
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-primary-dark/40 backdrop-blur-sm"
-              onClick={() => setIsIOSModalOpen(false)}
-              aria-hidden="true"
-            />
-            <motion.div 
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="modal-title"
-              initial={{ opacity: 0, y: 20, scale: 0.95 }} 
-              animate={{ opacity: 1, y: 0, scale: 1 }} 
-              exit={{ opacity: 0, y: 20, scale: 0.95 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-sm bg-white rounded-[24px] p-8 shadow-2xl overflow-hidden"
-            >
-              <button 
-                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-surface-muted text-text-tertiary hover:bg-border transition-colors focus-visible:ring-2 focus-visible:ring-primary outline-none"
-                onClick={() => setIsIOSModalOpen(false)}
-                aria-label="Close modal"
-              >
-                <ion-icon name="close"></ion-icon>
-              </button>
-              
-              <div className="w-16 h-16 bg-surface-subtle rounded-[16px] flex items-center justify-center mb-6 text-primary-dark shadow-sm">
-                <ion-icon name="logo-apple" style={{ fontSize: '32px' }}></ion-icon>
-              </div>
-              
-              <h3 id="modal-title" className="text-[22px] font-display font-extrabold mb-3 text-primary-dark">Install on iOS</h3>
-              <p className="text-[15px] text-text-secondary mb-6 leading-[1.6]">
-                Enjoy the full native experience on your iPhone by adding our Progressive Web App to your home screen.
-              </p>
-              
-              {isInAppBrowser && (
-                <div className="bg-danger/10 text-danger p-4 rounded-[12px] mb-6 text-[14px] font-medium border border-danger/20 shadow-sm">
-                  <span className="font-bold flex items-center gap-2 mb-1">
-                    <ion-icon name="warning"></ion-icon> In-App Browser Detected
-                  </span>
-                  To install, please tap the ... menu in the bottom right corner and select "Open in browser" or "Open in Safari" first.
-                </div>
-              )}
-              
-              <ol className="space-y-5 mb-8">
-                <li className="flex gap-4 items-start">
-                  <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-[13px] shrink-0 mt-0.5">1</div>
-                  <div className="text-[14px] leading-relaxed text-text-primary">Open <strong className="font-bold">morpho-cafe-app.vercel.app</strong> in Safari.</div>
-                </li>
-                <li className="flex gap-4 items-start">
-                  <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-[13px] shrink-0 mt-0.5">2</div>
-                  <div className="text-[14px] leading-relaxed text-text-primary">Tap the <strong className="font-bold">Share</strong> icon <span className="inline-flex items-center justify-center w-6 h-6 bg-surface-muted rounded text-text-secondary mx-1"><ion-icon name="share-outline"></ion-icon></span> below.</div>
-                </li>
-                <li className="flex gap-4 items-start">
-                  <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-[13px] shrink-0 mt-0.5">3</div>
-                  <div className="text-[14px] leading-relaxed text-text-primary">Tap <strong className="font-bold">"Add to Home Screen"</strong> <span className="inline-flex items-center justify-center w-6 h-6 bg-surface-muted rounded text-text-secondary mx-1"><ion-icon name="add-square-outline"></ion-icon></span>.</div>
-                </li>
-              </ol>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+      {/* Modal Removed */}
     </div>
   )
 }
