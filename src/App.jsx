@@ -226,7 +226,7 @@ function App() {
               description="We pack every order with extra care, ensuring your cold drinks stay frosty and your hot meals arrive warm."
             />
             <FeatureCard 
-              image="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?q=80&w=800&auto=format&fit=crop"
+              image="/delivery-image.jpg"
               title="Brought to You"
               description="Ready to enjoy at home. Track your delivery in real-time straight from Morpho Cafe & Studio."
             />
