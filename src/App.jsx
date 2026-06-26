@@ -205,19 +205,16 @@ function App() {
               image="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=800&auto=format&fit=crop"
               title="Cafe-Quality Freshness"
               description="We pack every order with extra care, ensuring your cold drinks stay frosty and your hot meals arrive warm."
-              accent="from-primary/5 via-white to-white"
             />
             <FeatureCard 
               image="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?q=80&w=800&auto=format&fit=crop"
               title="Brought to You"
               description="Ready to enjoy at home. Track your delivery in real-time straight from Morpho Cafe & Studio."
-              accent="from-accent/5 via-white to-white"
             />
             <FeatureCard 
               image="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=800&auto=format&fit=crop"
               title="Good Vibes, Anywhere"
               description="Save your favorites, track your orders easily, and unlock exclusive app-only deals and promos."
-              accent="from-success/5 via-white to-white"
             />
           </div>
         </div>
@@ -349,15 +346,15 @@ function App() {
   )
 }
 
-function FeatureCard({ image, title, description, accent }) {
+function FeatureCard({ image, title, description }) {
   return (
     <motion.div 
       whileHover={{ y: -8, scale: 1.02 }}
-      className="group bg-white rounded-[32px] p-4 md:p-5 border border-border/50 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(1,62,55,0.08)] hover:border-primary/20 transition-all duration-500 flex flex-col h-full"
+      className="group relative overflow-hidden rounded-[32px] shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgba(1,62,55,0.15)] transition-all duration-500 h-[380px] md:h-[420px] flex flex-col justify-end"
     >
-      {/* Framed Image Island */}
-      <div className="relative h-48 md:h-56 w-full rounded-[24px] overflow-hidden mb-6 bg-surface-muted shrink-0">
-        <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none" />
+      {/* Full Background Image */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500 z-10 pointer-events-none" />
         <img 
           src={image} 
           alt={title} 
@@ -365,15 +362,10 @@ function FeatureCard({ image, title, description, accent }) {
         />
       </div>
 
-      {/* Content */}
-      <div className="relative z-20 px-4 pb-4 flex-1 flex flex-col">
-        {/* Subtle Hover Gradient */}
-        <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br ${accent} pointer-events-none rounded-[24px]`} />
-        
-        <div className="relative z-10">
-          <h3 className="text-[20px] md:text-[22px] font-display font-extrabold mb-3 text-primary-dark group-hover:text-primary transition-colors duration-500">{title}</h3>
-          <p className="text-[15px] text-text-secondary leading-[1.7] font-medium">{description}</p>
-        </div>
+      {/* Glassmorphism Content Area */}
+      <div className="relative z-20 m-4 md:m-5 p-6 md:p-8 rounded-[24px] bg-white/75 backdrop-blur-xl border border-white/50 shadow-sm overflow-hidden group-hover:bg-white/90 transition-colors duration-500">
+        <h3 className="text-[20px] font-display font-extrabold mb-2 text-primary-dark group-hover:text-primary transition-colors duration-500">{title}</h3>
+        <p className="text-[14px] text-text-secondary leading-[1.6] font-medium">{description}</p>
       </div>
     </motion.div>
   )
