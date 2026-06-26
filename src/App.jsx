@@ -248,10 +248,10 @@ function App() {
           
           <div className="flex flex-col md:flex-row gap-12 md:gap-6 items-center justify-between relative">
             {/* Desktop connecting line */}
-            <div className="hidden md:block absolute top-[40px] left-[15%] right-[15%] h-px bg-border border-dashed border-t-2 z-0" />
+            <div className="hidden md:block absolute top-[40px] left-[15%] right-[15%] border-t-2 border-dashed border-border z-0" />
             
             {/* Mobile connecting line */}
-            <div className="block md:hidden absolute top-[10%] bottom-[10%] left-1/2 -translate-x-1/2 w-px bg-border border-dashed border-l-2 z-0" />
+            <div className="block md:hidden absolute top-[10%] bottom-[10%] left-1/2 -translate-x-1/2 border-l-2 border-dashed border-border z-0" />
             
             <Step number="1" title="Get the App" desc="Download the Morpho Customer app on your device." />
             <Step number="2" title="Pick Your Favorites" desc="Browse our signature meals and handcrafted coffee." />
@@ -406,11 +406,13 @@ function FeatureCard({ image, title, description }) {
 function Step({ number, title, desc }) {
   return (
     <div className="flex flex-col items-center text-center w-full max-w-[240px] relative z-10">
-      <div className="w-20 h-20 rounded-full bg-white shadow-lg border-[6px] border-surface-subtle flex items-center justify-center text-[24px] font-display font-extrabold text-primary mb-6">
+      <div className="w-20 h-20 rounded-full bg-white shadow-lg border-[6px] border-surface-subtle flex items-center justify-center text-[24px] font-display font-extrabold text-primary mb-4 relative z-10">
         {number}
       </div>
-      <h3 className="text-[18px] font-display font-bold mb-3 text-primary-dark">{title}</h3>
-      <p className="text-[15px] text-text-secondary leading-[1.6]">{desc}</p>
+      <div className="bg-surface-subtle relative z-10 px-4 py-2 w-[120%]">
+        <h3 className="text-[18px] font-display font-bold mb-3 text-primary-dark">{title}</h3>
+        <p className="text-[15px] text-text-secondary leading-[1.6]">{desc}</p>
+      </div>
     </div>
   )
 }
