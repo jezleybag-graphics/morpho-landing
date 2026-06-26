@@ -76,7 +76,7 @@ function App() {
         >
           <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-md text-primary-dark font-bold text-[13px] px-4 py-2 rounded-full mb-6 border border-primary/10 shadow-sm">
             <ion-icon name="cafe-outline"></ion-icon>
-            <span>Freshly brewed. Delivered fast.</span>
+            <span>Crafted with care. Delivered to you.</span>
           </div>
           <h1 className="text-[32px] md:text-[44px] lg:text-[52px] font-display font-extrabold tracking-tight leading-[1.15] mb-6 text-primary-dark">
             Cuyapo's first-ever <br className="hidden md:block" />
