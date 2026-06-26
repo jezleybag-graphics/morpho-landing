@@ -1,16 +1,24 @@
-import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useCommunityStats } from './hooks/useCommunityStats'
 
 function App() {
   const [isIOSModalOpen, setIsIOSModalOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [isInAppBrowser, setIsInAppBrowser] = useState(false)
   const { count, avatars, isLoading } = useCommunityStats()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll)
+    
+    // Detect in-app browsers (Facebook, Instagram, TikTok)
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    if (ua.indexOf("FBAN") > -1 || ua.indexOf("FBAV") > -1 || ua.indexOf("Instagram") > -1 || ua.indexOf("TikTok") > -1) {
+      setIsInAppBrowser(true)
+    }
+    
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -189,8 +197,36 @@ function App() {
         </motion.div>
       </main>
 
-      {/* Immersive Parallax Features Section */}
-      <ImmersiveFeatures />
+      {/* Features Section */}
+      <section id="taste" className="py-20 md:py-32 bg-white px-6 relative">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 md:mb-20">
+            <h2 className="text-[28px] md:text-[36px] font-display font-extrabold mb-4 text-primary-dark">Crafted for Convenience</h2>
+            <p className="text-[16px] text-text-secondary max-w-2xl mx-auto leading-relaxed">
+              We poured the same love into our app as we do our coffee. Enjoy a seamless, beautiful ordering experience.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            <FeatureCard 
+              image="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=800&auto=format&fit=crop"
+              title="Cafe-Quality Freshness"
+              description="We pack every order with extra care, ensuring your cold drinks stay frosty and your hot meals arrive warm."
+            />
+            <FeatureCard 
+              image="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?q=80&w=800&auto=format&fit=crop"
+              title="Brought to You"
+              description="Ready to enjoy at home. Track your delivery in real-time straight from Morpho Cafe & Studio."
+            />
+            <FeatureCard 
+              image="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=800&auto=format&fit=crop"
+              title="Good Vibes, Anywhere"
+              description="Save your favorites, track your orders easily, and unlock exclusive app-only deals and promos."
+            />
+          </div>
+        </div>
+      </section>
 
       {/* How it Works */}
       <section id="how" className="py-20 md:py-32 px-6 relative bg-surface-subtle overflow-hidden">
@@ -201,7 +237,10 @@ function App() {
           
           <div className="flex flex-col md:flex-row gap-12 md:gap-6 items-center justify-between relative">
             {/* Desktop connecting line */}
-            <div className="hidden md:block absolute top-[40px] left-[15%] right-[15%] h-px bg-border border-dashed border-t-2" />
+            <div className="hidden md:block absolute top-[40px] left-[15%] right-[15%] h-px bg-border border-dashed border-t-2 z-0" />
+            
+            {/* Mobile connecting line */}
+            <div className="block md:hidden absolute top-[10%] bottom-[10%] left-1/2 -translate-x-1/2 w-px bg-border border-dashed border-l-2 z-0" />
             
             <Step number="1" title="Get the App" desc="Download the Morpho Customer app on your device." />
             <Step number="2" title="Pick Your Favorites" desc="Browse our signature meals and handcrafted coffee." />
@@ -285,9 +324,18 @@ function App() {
               </div>
               
               <h3 id="modal-title" className="text-[22px] font-display font-extrabold mb-3 text-primary-dark">Install on iOS</h3>
-              <p className="text-[15px] text-text-secondary mb-8 leading-[1.6]">
+              <p className="text-[15px] text-text-secondary mb-6 leading-[1.6]">
                 Enjoy the full native experience on your iPhone by adding our Progressive Web App to your home screen.
               </p>
+              
+              {isInAppBrowser && (
+                <div className="bg-danger/10 text-danger p-4 rounded-[12px] mb-6 text-[14px] font-medium border border-danger/20 shadow-sm">
+                  <span className="font-bold flex items-center gap-2 mb-1">
+                    <ion-icon name="warning"></ion-icon> In-App Browser Detected
+                  </span>
+                  To install, please tap the ... menu in the top corner and select "Open in Safari" first.
+                </div>
+              )}
               
               <ol className="space-y-5 mb-8">
                 <li className="flex gap-4 items-start">
@@ -318,108 +366,28 @@ function App() {
   )
 }
 
-function ImmersiveFeatures() {
-  const containerRef = useRef(null)
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  })
-
-  const op1 = useTransform(scrollYProgress, [0, 0.25, 0.35], [1, 1, 0])
-  const op2 = useTransform(scrollYProgress, [0.25, 0.35, 0.6, 0.7], [0, 1, 1, 0])
-  const op3 = useTransform(scrollYProgress, [0.6, 0.7, 1], [0, 1, 1])
-
-  const y1 = useTransform(scrollYProgress, [0.25, 0.35], [0, -50])
-  const y2 = useTransform(scrollYProgress, [0.25, 0.35, 0.6, 0.7], [50, 0, 0, -50])
-  const y3 = useTransform(scrollYProgress, [0.6, 0.7], [50, 0])
-
-  const imgScale1 = useTransform(scrollYProgress, [0, 0.35], [1, 1.1])
-  const imgScale2 = useTransform(scrollYProgress, [0.25, 0.7], [1, 1.1])
-  const imgScale3 = useTransform(scrollYProgress, [0.6, 1], [1, 1.1])
-
-  const features = [
-    {
-      title: "Cafe-Quality Freshness",
-      desc: "We pack every order with extra care, ensuring your cold drinks stay frosty and your hot meals arrive warm.",
-      image: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=1600&auto=format&fit=crop",
-      op: op1,
-      y: y1,
-      scale: imgScale1
-    },
-    {
-      title: "Brought to You",
-      desc: "Ready to enjoy at home. Track your delivery in real-time straight from Morpho Cafe & Studio.",
-      image: "https://images.unsplash.com/photo-1512568400610-62da28bc8a13?q=80&w=1600&auto=format&fit=crop",
-      op: op2,
-      y: y2,
-      scale: imgScale2
-    },
-    {
-      title: "Good Vibes, Anywhere",
-      desc: "Save your favorites, track your orders easily, and unlock exclusive app-only deals and promos.",
-      image: "https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=1600&auto=format&fit=crop",
-      op: op3,
-      y: y3,
-      scale: imgScale3
-    }
-  ]
-
+function FeatureCard({ image, title, description }) {
   return (
-    <section id="taste" ref={containerRef} className="relative h-[300vh] bg-black">
-      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex items-center justify-center bg-black">
-        {/* Background Images */}
-        {features.map((feat, i) => (
-          <motion.div
-            key={i}
-            className="absolute inset-0 w-full h-full"
-            style={{ opacity: feat.op }}
-          >
-            <div className="absolute inset-0 bg-black/60 z-10 pointer-events-none" />
-            <motion.img 
-              src={feat.image}
-              className="w-full h-full object-cover origin-center"
-              alt={feat.title}
-              style={{ scale: feat.scale }}
-            />
-          </motion.div>
-        ))}
-
-        {/* Text Content */}
-        <div className="relative z-20 max-w-5xl mx-auto px-6 w-full h-[300px] flex items-center justify-center">
-          {features.map((feat, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-full px-6 md:px-12 flex flex-col items-center justify-center text-center pointer-events-none"
-              style={{ opacity: feat.op, y: feat.y }}
-            >
-              <h2 className="text-[36px] md:text-[56px] lg:text-[72px] font-display font-extrabold text-white mb-6 tracking-tight leading-[1.1] max-w-3xl drop-shadow-xl">
-                {feat.title}
-              </h2>
-              <p className="text-[18px] md:text-[24px] text-white/90 leading-relaxed font-medium max-w-2xl drop-shadow-md">
-                {feat.desc}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Progress Indicators */}
-        <div className="absolute left-6 md:left-12 top-1/2 -translate-y-1/2 z-30 flex flex-col gap-4">
-          {features.map((_, i) => (
-            <motion.div key={i} className="w-1.5 md:w-2 rounded-full bg-white transition-all duration-300" 
-              style={{ 
-                height: i === 0 ? useTransform(scrollYProgress, [0, 0.25, 0.35], [32, 32, 8]) : 
-                        i === 1 ? useTransform(scrollYProgress, [0.25, 0.35, 0.6, 0.7], [8, 32, 32, 8]) : 
-                                  useTransform(scrollYProgress, [0.6, 0.7], [8, 32]),
-                opacity: i === 0 ? useTransform(scrollYProgress, [0, 0.25, 0.35], [1, 1, 0.3]) : 
-                         i === 1 ? useTransform(scrollYProgress, [0.25, 0.35, 0.6, 0.7], [0.3, 1, 1, 0.3]) : 
-                                   useTransform(scrollYProgress, [0.6, 0.7], [0.3, 1])
-              }} 
-            />
-          ))}
-        </div>
+    <motion.div 
+      whileHover={{ y: -8, scale: 1.02 }}
+      className="group bg-white p-4 md:p-5 rounded-[32px] border border-border/50 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(1,62,55,0.08)] hover:border-primary/20 transition-all duration-500 flex flex-col h-full"
+    >
+      {/* Framed Image */}
+      <div className="relative h-48 md:h-56 w-full overflow-hidden rounded-[24px] mb-6 shrink-0 bg-surface-muted">
+        <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none" />
+        <img 
+          src={image} 
+          alt={title} 
+          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+        />
       </div>
-    </section>
+
+      {/* Content Area */}
+      <div className="px-2 md:px-4 pb-2 flex-1 flex flex-col">
+        <h3 className="text-[20px] font-display font-extrabold mb-3 text-primary-dark group-hover:text-primary transition-colors duration-500">{title}</h3>
+        <p className="text-[14px] md:text-[15px] text-text-secondary leading-[1.7] font-medium">{description}</p>
+      </div>
+    </motion.div>
   )
 }
 
