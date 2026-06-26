@@ -353,27 +353,25 @@ function FeatureCard({ image, title, description, accent }) {
   return (
     <motion.div 
       whileHover={{ y: -8, scale: 1.02 }}
-      className="group relative overflow-hidden bg-white rounded-[32px] border border-border/50 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(1,62,55,0.08)] hover:border-primary/20 transition-all duration-500 flex flex-col h-full"
+      className="group bg-white rounded-[32px] p-4 md:p-5 border border-border/50 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(1,62,55,0.08)] hover:border-primary/20 transition-all duration-500 flex flex-col h-full"
     >
-      {/* Image Half */}
-      <div className="relative h-56 w-full overflow-hidden bg-surface-muted shrink-0">
-        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none" />
+      {/* Framed Image Island */}
+      <div className="relative h-48 md:h-56 w-full rounded-[24px] overflow-hidden mb-6 bg-surface-muted shrink-0">
+        <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none" />
         <img 
           src={image} 
           alt={title} 
           className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
         />
-        {/* Subtle gradient overlay to blend with the white card */}
-        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
       </div>
 
-      {/* Content Half */}
-      <div className="relative z-20 p-8 md:p-10 pt-2 flex-1 flex flex-col bg-white">
-        {/* Hover Gradient Background */}
-        <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br ${accent} pointer-events-none rounded-b-[32px]`} />
+      {/* Content */}
+      <div className="relative z-20 px-4 pb-4 flex-1 flex flex-col">
+        {/* Subtle Hover Gradient */}
+        <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br ${accent} pointer-events-none rounded-[24px]`} />
         
         <div className="relative z-10">
-          <h3 className="text-[22px] font-display font-extrabold mb-3 text-primary-dark group-hover:text-primary transition-colors duration-500">{title}</h3>
+          <h3 className="text-[20px] md:text-[22px] font-display font-extrabold mb-3 text-primary-dark group-hover:text-primary transition-colors duration-500">{title}</h3>
           <p className="text-[15px] text-text-secondary leading-[1.7] font-medium">{description}</p>
         </div>
       </div>
