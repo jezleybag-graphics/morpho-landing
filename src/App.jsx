@@ -221,9 +221,9 @@ function App() {
 
           <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             <FeatureCard 
-              image="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=800&auto=format&fit=crop"
-              title="Cafe-Quality Freshness"
-              description="We pack every order with extra care, ensuring your cold drinks stay frosty and your hot meals arrive warm."
+              image="/dishes.webp"
+              title="Signature Meals & Delights"
+              description="From hearty comfort food to decadent pastries, enjoy Morpho Cafe's signature dishes right at your dining table."
             />
             <FeatureCard 
               image="/delivery-image.jpg"
