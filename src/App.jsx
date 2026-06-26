@@ -74,9 +74,8 @@ function App() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-md text-primary-dark font-bold text-[13px] px-4 py-2 rounded-full mb-6 border border-primary/10 shadow-sm">
-            <ion-icon name="cafe-outline"></ion-icon>
-            <span>Sip the moment, one cup at a time.</span>
+          <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-md text-primary-dark font-bold text-[13px] px-4 py-2 rounded-full mb-6 border border-primary/10 shadow-sm italic">
+            <span>"Sip the moment, one cup at a time."</span>
           </div>
           <h1 className="text-[32px] md:text-[44px] lg:text-[52px] font-display font-extrabold tracking-tight leading-[1.15] mb-6 text-primary-dark">
             Cuyapo's first-ever <br className="hidden md:block" />
