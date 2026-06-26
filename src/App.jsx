@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 function App() {
   const [isIOSModalOpen, setIsIOSModalOpen] = useState(false)
@@ -253,9 +254,9 @@ function App() {
         </div>
         <p>&copy; 2026 Morpho Cafe Ecosystem. All rights reserved.</p>
         <div className="flex justify-center gap-6 mt-6 font-medium">
-          <a href="#" className="hover:text-primary transition-colors focus-visible:underline outline-none">Privacy</a>
-          <a href="#" className="hover:text-primary transition-colors focus-visible:underline outline-none">Terms</a>
-          <a href="#" className="hover:text-primary transition-colors focus-visible:underline outline-none">Support</a>
+          <Link to="/privacy" className="hover:text-primary transition-colors focus-visible:underline outline-none">Privacy</Link>
+          <Link to="/terms" className="hover:text-primary transition-colors focus-visible:underline outline-none">Terms</Link>
+          <Link to="/support" className="hover:text-primary transition-colors focus-visible:underline outline-none">Support</Link>
         </div>
       </footer>
 
