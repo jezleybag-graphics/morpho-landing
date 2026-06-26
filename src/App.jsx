@@ -231,7 +231,7 @@ function App() {
               description="Ready to enjoy at home. Track your delivery in real-time straight from Morpho Cafe & Studio."
             />
             <FeatureCard 
-              image="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=800&auto=format&fit=crop"
+              image="/feature3.webp"
               title="Good Vibes, Anywhere"
               description="Save your favorites, track your orders easily, and unlock exclusive app-only deals and promos."
             />
