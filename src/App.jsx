@@ -364,15 +364,6 @@ function App() {
                   <div className="text-[14px] leading-relaxed text-text-primary">Tap <strong className="font-bold">"Add to Home Screen"</strong> <span className="inline-flex items-center justify-center w-6 h-6 bg-surface-muted rounded text-text-secondary mx-1"><ion-icon name="add-square-outline"></ion-icon></span>.</div>
                 </li>
               </ol>
-              
-              <a 
-                href="https://morpho-cafe-app.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full flex items-center justify-center bg-primary text-white font-bold py-4 rounded-[14px] text-[15px] hover:bg-primary-dark transition-all active:scale-95 focus-visible:ring-4 focus-visible:ring-primary/30 outline-none"
-              >
-                Open Web App
-              </a>
             </motion.div>
           </div>
         )}
