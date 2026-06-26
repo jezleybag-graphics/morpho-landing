@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { useCommunityStats } from './hooks/useCommunityStats'
 
 function App() {
   const [isIOSModalOpen, setIsIOSModalOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { count, avatars, isLoading } = useCommunityStats()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -111,15 +113,37 @@ function App() {
             </button>
           </div>
           
-          <div className="mt-10 flex items-center justify-center lg:justify-start gap-4 text-[14px] text-text-secondary font-medium">
-            <div className="flex -space-x-2">
-              {[1, 2, 3].map(i => (
-                <div key={i} className="w-9 h-9 rounded-full border-2 border-surface-muted bg-surface-subtle overflow-hidden shadow-sm">
-                  <img src={`https://i.pravatar.cc/100?img=${i+40}`} alt="Customer" className="w-full h-full object-cover" />
-                </div>
-              ))}
+          <div className="flex items-center gap-4 animate-fade-in mt-10" style={{ animationDelay: '0.4s' }}>
+            <div className="flex -space-x-3">
+              {isLoading ? (
+                <>
+                  <div className="w-10 h-10 rounded-full border-2 border-white shadow-sm bg-surface-subtle animate-pulse" />
+                  <div className="w-10 h-10 rounded-full border-2 border-white shadow-sm bg-surface-subtle animate-pulse" />
+                  <div className="w-10 h-10 rounded-full border-2 border-white shadow-sm bg-surface-subtle animate-pulse" />
+                </>
+              ) : avatars.length > 0 ? (
+                avatars.map((url, i) => (
+                  <img key={i} src={url} alt="Community Member" className="w-10 h-10 rounded-full border-2 border-white shadow-sm object-cover" />
+                ))
+              ) : (
+                <>
+                  <img src="https://i.pravatar.cc/100?img=1" alt="Customer" className="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
+                  <img src="https://i.pravatar.cc/100?img=5" alt="Customer" className="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
+                  <img src="https://i.pravatar.cc/100?img=9" alt="Customer" className="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
+                </>
+              )}
             </div>
-            <span>Join our community of coffee lovers</span>
+            <div className="flex flex-col">
+              <span className="text-sm font-bold text-primary-dark">
+                {isLoading ? (
+                  <span className="block h-5 w-56 bg-surface-subtle animate-pulse rounded" />
+                ) : count > 0 ? (
+                  `Join ${count} coffee lovers in our community`
+                ) : (
+                  "Join our community of coffee lovers"
+                )}
+              </span>
+            </div>
           </div>
         </motion.div>
 
