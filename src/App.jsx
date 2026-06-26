@@ -346,7 +346,7 @@ function App() {
                   <span className="font-bold flex items-center gap-2 mb-1">
                     <ion-icon name="warning"></ion-icon> In-App Browser Detected
                   </span>
-                  To install, please tap the ... menu in the top corner and select "Open in Safari" first.
+                  To install, please tap the ... menu in the bottom right corner and select "Open in browser" or "Open in Safari" first.
                 </div>
               )}
               
@@ -365,12 +365,12 @@ function App() {
                 </li>
               </ol>
               
-              <button 
-                onClick={() => window.open('https://order.morphocafe.com', '_blank')}
-                className="w-full bg-primary text-white font-bold py-4 rounded-[14px] text-[15px] hover:bg-primary-dark transition-all active:scale-95 focus-visible:ring-4 focus-visible:ring-primary/30 outline-none"
+              <a 
+                href="https://order.morphocafe.com"
+                className="w-full flex items-center justify-center bg-primary text-white font-bold py-4 rounded-[14px] text-[15px] hover:bg-primary-dark transition-all active:scale-95 focus-visible:ring-4 focus-visible:ring-primary/30 outline-none"
               >
                 Open Web App
-              </button>
+              </a>
             </motion.div>
           </div>
         )}
