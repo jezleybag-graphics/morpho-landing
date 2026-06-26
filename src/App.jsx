@@ -202,24 +202,24 @@ function App() {
 
           <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             <FeatureCard 
-              icon="cafe"
+              visual={<FreshnessVisual />}
+              bgIcon="cafe"
               title="Cafe-Quality Freshness"
               description="We pack every order with extra care, ensuring your cold drinks stay frosty and your hot meals arrive warm."
-              color="bg-[#E6F3F1] text-primary"
               accent="from-primary/5 via-white to-white"
             />
             <FeatureCard 
-              icon="bicycle"
+              visual={<TrackingVisual />}
+              bgIcon="bicycle"
               title="Brought to You"
               description="Ready to enjoy at home. Track your delivery in real-time straight from Morpho Cafe & Studio."
-              color="bg-[#FAF5ED] text-accent"
               accent="from-accent/5 via-white to-white"
             />
             <FeatureCard 
-              icon="star"
+              visual={<RewardsVisual />}
+              bgIcon="star"
               title="Good Vibes, Anywhere"
               description="Save your favorites, track your orders easily, and unlock exclusive app-only deals and promos."
-              color="bg-[#F0FDF4] text-success"
               accent="from-success/5 via-white to-white"
             />
           </div>
@@ -352,7 +352,61 @@ function App() {
   )
 }
 
-function FeatureCard({ icon, title, description, color, accent }) {
+const FreshnessVisual = () => (
+  <div className="w-full max-w-[200px] bg-white border border-border/60 rounded-2xl p-3 shadow-[0_2px_10px_rgba(0,0,0,0.03)] flex items-center gap-3 relative overflow-hidden group-hover:border-primary/30 transition-colors duration-500">
+    <div className="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-bl-full -z-10" />
+    <div className="w-12 h-12 rounded-xl bg-surface-muted flex items-center justify-center text-primary-dark shrink-0">
+      <ion-icon name="cafe" style={{ fontSize: '24px' }}></ion-icon>
+    </div>
+    <div className="flex-1 min-w-0">
+      <div className="text-[11px] font-bold text-text-secondary uppercase tracking-wider truncate mb-1">Iced Latte</div>
+      <div className="flex items-center justify-between">
+        <div className="text-[14px] font-display font-extrabold text-primary-dark">₱120</div>
+        <div className="w-6 h-6 rounded-md bg-primary text-white flex items-center justify-center shadow-sm">
+          <ion-icon name="add" style={{ fontSize: '16px' }}></ion-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const TrackingVisual = () => (
+  <div className="w-full max-w-[200px] h-[72px] bg-[#F8FAFC] border border-border/60 rounded-2xl p-2 shadow-[0_2px_10px_rgba(0,0,0,0.03)] relative overflow-hidden flex items-center justify-center group-hover:border-accent/30 transition-colors duration-500">
+    {/* Fake map route */}
+    <svg className="absolute inset-0 w-full h-full opacity-30 text-accent" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <path d="M -10,80 Q 30,80 50,50 T 110,20" fill="none" stroke="currentColor" strokeWidth="4" strokeDasharray="8 6" strokeLinecap="round" />
+    </svg>
+    
+    {/* Map Pins */}
+    <div className="absolute bottom-2 left-4 w-3 h-3 rounded-full bg-primary-dark border-2 border-white shadow-sm" />
+    <div className="absolute top-3 right-6 w-4 h-4 rounded-full bg-accent border-2 border-white shadow-sm flex items-center justify-center">
+      <div className="w-1.5 h-1.5 bg-white rounded-full" />
+    </div>
+
+    {/* Floating Status Pill */}
+    <div className="relative z-10 bg-white border border-border/50 rounded-full px-3 py-1.5 shadow-sm flex items-center gap-2">
+      <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+      <span className="text-[11px] font-bold text-primary-dark tracking-wide">4 mins away</span>
+    </div>
+  </div>
+);
+
+const RewardsVisual = () => (
+  <div className="w-full max-w-[200px] bg-white border border-border/60 rounded-2xl p-3 shadow-[0_2px_10px_rgba(0,0,0,0.03)] group-hover:border-success/30 transition-colors duration-500">
+    <div className="flex items-center gap-1.5 mb-2.5 text-success">
+      <ion-icon name="star" style={{ fontSize: '16px' }}></ion-icon>
+      <ion-icon name="star" style={{ fontSize: '16px' }}></ion-icon>
+      <ion-icon name="star" style={{ fontSize: '16px' }}></ion-icon>
+      <ion-icon name="star" style={{ fontSize: '16px' }}></ion-icon>
+      <ion-icon name="star-outline" style={{ fontSize: '16px', color: '#CBD5E1' }}></ion-icon>
+    </div>
+    <div className="bg-success/10 rounded-lg p-2 flex items-center justify-center border border-success/20">
+      <span className="text-[11px] font-bold text-success uppercase tracking-wider">Free drink unlocked!</span>
+    </div>
+  </div>
+);
+
+function FeatureCard({ visual, bgIcon, title, description, accent }) {
   return (
     <motion.div 
       whileHover={{ y: -8, scale: 1.02 }}
@@ -363,12 +417,12 @@ function FeatureCard({ icon, title, description, color, accent }) {
       
       {/* Decorative Large Faded Icon */}
       <div className="absolute -bottom-6 -right-6 text-[140px] text-surface-subtle group-hover:text-primary/5 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
-        <ion-icon name={icon}></ion-icon>
+        <ion-icon name={bgIcon}></ion-icon>
       </div>
 
       <div className="relative z-10">
-        <div className={`w-16 h-16 rounded-[20px] flex items-center justify-center mb-8 ${color} shadow-sm group-hover:scale-110 transition-transform duration-500`}>
-          <ion-icon name={icon} style={{ fontSize: '32px' }}></ion-icon>
+        <div className="mb-8 group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-500 origin-left">
+          {visual}
         </div>
         <h3 className="text-[20px] font-display font-extrabold mb-3 text-primary-dark group-hover:text-primary transition-colors duration-500">{title}</h3>
         <p className="text-[15px] text-text-secondary leading-[1.7] font-medium">{description}</p>
