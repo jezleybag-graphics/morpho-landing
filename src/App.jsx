@@ -49,7 +49,7 @@ function App() {
       <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'glass-nav py-3' : 'bg-transparent py-5'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="/morpho-logo.svg" alt="Morpho Cafe Logo" className="w-10 h-10 rounded-[12px] object-contain shadow-sm" />
+            <img src="/logo.svg" alt="Morpho Cafe Logo" className="h-8 md:h-10 w-auto" />
             <span className="font-display font-bold text-lg md:text-xl tracking-tight text-primary-dark">Morpho Cafe</span>
           </div>
           <div className="hidden md:flex items-center gap-8 font-semibold text-[15px] text-text-secondary">
@@ -247,8 +247,8 @@ function App() {
       </section>
 
       <footer className="border-t border-border/60 bg-white py-10 px-6 text-center text-text-tertiary text-[14px]">
-        <div className="flex items-center justify-center gap-2 mb-4 text-primary">
-          <img src="/morpho-logo.svg" alt="Morpho Cafe Logo" className="w-6 h-6 object-contain" />
+        <div className="flex items-center justify-center gap-2 mb-4 text-primary-dark">
+          <img src="/logo.svg" alt="Morpho Cafe Logo" className="h-6 w-auto" />
           <span className="font-display font-bold tracking-tight">Morpho Cafe</span>
         </div>
         <p>&copy; 2026 Morpho Cafe Ecosystem. All rights reserved.</p>
