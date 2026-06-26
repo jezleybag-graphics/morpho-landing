@@ -202,22 +202,19 @@ function App() {
 
           <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             <FeatureCard 
-              visual={<FreshnessVisual />}
-              bgIcon="cafe"
+              image="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=800&auto=format&fit=crop"
               title="Cafe-Quality Freshness"
               description="We pack every order with extra care, ensuring your cold drinks stay frosty and your hot meals arrive warm."
               accent="from-primary/5 via-white to-white"
             />
             <FeatureCard 
-              visual={<TrackingVisual />}
-              bgIcon="bicycle"
+              image="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?q=80&w=800&auto=format&fit=crop"
               title="Brought to You"
               description="Ready to enjoy at home. Track your delivery in real-time straight from Morpho Cafe & Studio."
               accent="from-accent/5 via-white to-white"
             />
             <FeatureCard 
-              visual={<RewardsVisual />}
-              bgIcon="star"
+              image="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=800&auto=format&fit=crop"
               title="Good Vibes, Anywhere"
               description="Save your favorites, track your orders easily, and unlock exclusive app-only deals and promos."
               accent="from-success/5 via-white to-white"
@@ -352,80 +349,33 @@ function App() {
   )
 }
 
-const FreshnessVisual = () => (
-  <div className="w-full max-w-[200px] bg-white border border-border/60 rounded-2xl p-3 shadow-[0_2px_10px_rgba(0,0,0,0.03)] flex items-center gap-3 relative overflow-hidden group-hover:border-primary/30 transition-colors duration-500">
-    <div className="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-bl-full -z-10" />
-    <div className="w-12 h-12 rounded-xl bg-surface-muted flex items-center justify-center text-primary-dark shrink-0">
-      <ion-icon name="cafe" style={{ fontSize: '24px' }}></ion-icon>
-    </div>
-    <div className="flex-1 min-w-0">
-      <div className="text-[11px] font-bold text-text-secondary uppercase tracking-wider truncate mb-1">Iced Latte</div>
-      <div className="flex items-center justify-between">
-        <div className="text-[14px] font-display font-extrabold text-primary-dark">₱120</div>
-        <div className="w-6 h-6 rounded-md bg-primary text-white flex items-center justify-center shadow-sm">
-          <ion-icon name="add" style={{ fontSize: '16px' }}></ion-icon>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-const TrackingVisual = () => (
-  <div className="w-full max-w-[200px] h-[72px] bg-[#F8FAFC] border border-border/60 rounded-2xl p-2 shadow-[0_2px_10px_rgba(0,0,0,0.03)] relative overflow-hidden flex items-center justify-center group-hover:border-accent/30 transition-colors duration-500">
-    {/* Fake map route */}
-    <svg className="absolute inset-0 w-full h-full opacity-30 text-accent" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <path d="M -10,80 Q 30,80 50,50 T 110,20" fill="none" stroke="currentColor" strokeWidth="4" strokeDasharray="8 6" strokeLinecap="round" />
-    </svg>
-    
-    {/* Map Pins */}
-    <div className="absolute bottom-2 left-4 w-3 h-3 rounded-full bg-primary-dark border-2 border-white shadow-sm" />
-    <div className="absolute top-3 right-6 w-4 h-4 rounded-full bg-accent border-2 border-white shadow-sm flex items-center justify-center">
-      <div className="w-1.5 h-1.5 bg-white rounded-full" />
-    </div>
-
-    {/* Floating Status Pill */}
-    <div className="relative z-10 bg-white border border-border/50 rounded-full px-3 py-1.5 shadow-sm flex items-center gap-2">
-      <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-      <span className="text-[11px] font-bold text-primary-dark tracking-wide">4 mins away</span>
-    </div>
-  </div>
-);
-
-const RewardsVisual = () => (
-  <div className="w-full max-w-[200px] bg-white border border-border/60 rounded-2xl p-3 shadow-[0_2px_10px_rgba(0,0,0,0.03)] group-hover:border-success/30 transition-colors duration-500">
-    <div className="flex items-center gap-1.5 mb-2.5 text-success">
-      <ion-icon name="star" style={{ fontSize: '16px' }}></ion-icon>
-      <ion-icon name="star" style={{ fontSize: '16px' }}></ion-icon>
-      <ion-icon name="star" style={{ fontSize: '16px' }}></ion-icon>
-      <ion-icon name="star" style={{ fontSize: '16px' }}></ion-icon>
-      <ion-icon name="star-outline" style={{ fontSize: '16px', color: '#CBD5E1' }}></ion-icon>
-    </div>
-    <div className="bg-success/10 rounded-lg p-2 flex items-center justify-center border border-success/20">
-      <span className="text-[11px] font-bold text-success uppercase tracking-wider">Free drink unlocked!</span>
-    </div>
-  </div>
-);
-
-function FeatureCard({ visual, bgIcon, title, description, accent }) {
+function FeatureCard({ image, title, description, accent }) {
   return (
     <motion.div 
       whileHover={{ y: -8, scale: 1.02 }}
-      className="group relative overflow-hidden bg-white p-8 md:p-10 rounded-[32px] border border-border/50 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(1,62,55,0.08)] hover:border-primary/20 transition-all duration-500"
+      className="group relative overflow-hidden bg-white rounded-[32px] border border-border/50 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(1,62,55,0.08)] hover:border-primary/20 transition-all duration-500 flex flex-col h-full"
     >
-      {/* Hover Gradient Background */}
-      <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br ${accent}`} />
-      
-      {/* Decorative Large Faded Icon */}
-      <div className="absolute -bottom-6 -right-6 text-[140px] text-surface-subtle group-hover:text-primary/5 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
-        <ion-icon name={bgIcon}></ion-icon>
+      {/* Image Half */}
+      <div className="relative h-56 w-full overflow-hidden bg-surface-muted shrink-0">
+        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none" />
+        <img 
+          src={image} 
+          alt={title} 
+          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+        />
+        {/* Subtle gradient overlay to blend with the white card */}
+        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
       </div>
 
-      <div className="relative z-10">
-        <div className="mb-8 group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-500 origin-left">
-          {visual}
+      {/* Content Half */}
+      <div className="relative z-20 p-8 md:p-10 pt-2 flex-1 flex flex-col bg-white">
+        {/* Hover Gradient Background */}
+        <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br ${accent} pointer-events-none rounded-b-[32px]`} />
+        
+        <div className="relative z-10">
+          <h3 className="text-[22px] font-display font-extrabold mb-3 text-primary-dark group-hover:text-primary transition-colors duration-500">{title}</h3>
+          <p className="text-[15px] text-text-secondary leading-[1.7] font-medium">{description}</p>
         </div>
-        <h3 className="text-[20px] font-display font-extrabold mb-3 text-primary-dark group-hover:text-primary transition-colors duration-500">{title}</h3>
-        <p className="text-[15px] text-text-secondary leading-[1.7] font-medium">{description}</p>
       </div>
     </motion.div>
   )
