@@ -14,17 +14,18 @@ export function useCommunityStats() {
 
     async function fetchStats() {
       try {
-        // Run both queries in parallel
         const [countResponse, avatarsResponse] = await Promise.all([
-          // Get exact total count of all profiles
+          // Get exact total count of all CUSTOMER profiles
           supabase
             .from('profiles')
-            .select('id', { count: 'exact', head: true }),
+            .select('id', { count: 'exact', head: true })
+            .eq('role', 'customer'),
             
-          // Get the latest few profiles that actually have an avatar_url
+          // Get the latest few CUSTOMER profiles that actually have an avatar_url
           supabase
             .from('profiles')
             .select('avatar_url')
+            .eq('role', 'customer')
             .not('avatar_url', 'is', null)
             .order('created_at', { ascending: false })
             .limit(3)
