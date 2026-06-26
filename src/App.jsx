@@ -189,33 +189,40 @@ function App() {
         </motion.div>
       </main>
 
-      {/* Features Section - Editorial */}
-      <section id="taste" className="py-24 md:py-40 bg-white px-6 relative">
+      {/* Features Section */}
+      <section id="taste" className="py-20 md:py-32 bg-[#FDFBF7] px-6 relative">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        <div className="max-w-6xl mx-auto">
-          
-          <div className="mb-12">
-            <EditorialFeature 
-              subtitle="The Standard"
-              title="Cafe-Quality Freshness."
-              description="We pack every order with extra care, ensuring your cold drinks stay frosty and your hot meals arrive warm, just as the barista intended."
-              image="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=800&auto=format&fit=crop"
-            />
-            <EditorialFeature 
-              reverse={true}
-              subtitle="The Experience"
-              title="Brought to You."
-              description="Ready to enjoy at home. Track your delivery in real-time straight from Morpho Cafe & Studio. A seamless transition from our doors to yours."
-              image="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?q=80&w=800&auto=format&fit=crop"
-            />
-            <EditorialFeature 
-              subtitle="The Lifestyle"
-              title="Good Vibes, Anywhere."
-              description="Save your favorites, track your orders easily, and unlock exclusive app-only deals and promos. Bringing the studio aesthetic wherever you go."
-              image="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=800&auto=format&fit=crop"
-            />
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 md:mb-20">
+            <h2 className="text-[28px] md:text-[36px] font-display font-extrabold mb-4 text-primary-dark">Crafted for Convenience</h2>
+            <p className="text-[16px] text-text-secondary max-w-2xl mx-auto leading-relaxed">
+              We poured the same love into our app as we do our coffee. Enjoy a seamless, beautiful ordering experience.
+            </p>
           </div>
 
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            <FeatureCard 
+              image="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=800&auto=format&fit=crop"
+              title="Cafe-Quality Freshness"
+              description="We pack every order with extra care, ensuring your cold drinks stay frosty and your hot meals arrive warm."
+              badgeText="Signature"
+              badgeIcon="star"
+            />
+            <FeatureCard 
+              image="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?q=80&w=800&auto=format&fit=crop"
+              title="Brought to You"
+              description="Ready to enjoy at home. Track your delivery in real-time straight from Morpho Cafe & Studio."
+              badgeText="Live Tracking"
+              badgeIcon="bicycle"
+            />
+            <FeatureCard 
+              image="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=800&auto=format&fit=crop"
+              title="Good Vibes, Anywhere"
+              description="Save your favorites, track your orders easily, and unlock exclusive app-only deals and promos."
+              badgeText="Exclusive"
+              badgeIcon="gift"
+            />
+          </div>
         </div>
       </section>
 
@@ -345,26 +352,41 @@ function App() {
   )
 }
 
-function EditorialFeature({ image, title, description, reverse = false, subtitle }) {
+function FeatureCard({ image, title, description, badgeText, badgeIcon }) {
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 1, ease: "easeOut" }}
-      className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-12 md:gap-24 mb-24 md:mb-40 last:mb-0`}
+      whileHover={{ y: -10, scale: 1.02 }}
+      className="group relative overflow-hidden rounded-[36px] shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_24px_50px_rgba(1,62,55,0.15)] transition-all duration-500 h-[420px] md:h-[480px] bg-surface-muted"
     >
-      <div className="flex-1 w-full relative">
-        <div className="relative aspect-[3/4] md:aspect-square w-full max-w-lg mx-auto overflow-hidden">
-          <img src={image} alt={title} className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
+      {/* Full Bleed Image */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500 z-10 pointer-events-none" />
+        <img 
+          src={image} 
+          alt={title} 
+          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+        />
+      </div>
+
+      {/* Floating Badge (Top Left) */}
+      <div className="absolute top-5 left-5 z-20">
+        <div className="glass-card bg-white/80 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2 shadow-sm border border-white/60 transform group-hover:-translate-y-1 group-hover:scale-105 transition-all duration-500">
+          <ion-icon name={badgeIcon} class="text-primary text-[16px]"></ion-icon>
+          <span className="text-[12px] font-bold text-primary-dark uppercase tracking-wide">{badgeText}</span>
         </div>
       </div>
-      
-      <div className="flex-1 w-full text-center md:text-left">
-        <p className="text-[12px] font-bold tracking-[0.2em] text-primary uppercase mb-6">{subtitle}</p>
-        <h3 className="text-[32px] md:text-[48px] lg:text-[56px] font-display font-extrabold tracking-tight leading-[1.1] text-primary-dark mb-8">{title}</h3>
-        <p className="text-[16px] md:text-[18px] text-text-secondary leading-[1.8] max-w-md mx-auto md:mx-0">{description}</p>
-        <div className="mt-12 h-px w-24 bg-border mx-auto md:mx-0" />
+
+      {/* Floating Interactive Elements (Top Right - Decorative) */}
+      <div className="absolute top-5 right-5 z-20 w-10 h-10 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white border border-white/40 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500">
+        <ion-icon name="heart-outline" class="text-[20px]"></ion-icon>
+      </div>
+
+      {/* Overlapping Content Box (Bottom) */}
+      <div className="absolute bottom-5 left-5 right-5 z-20">
+        <div className="bg-white/90 backdrop-blur-xl p-6 rounded-[24px] border border-white/60 shadow-[0_8px_30px_rgba(0,0,0,0.08)] transform group-hover:-translate-y-2 transition-transform duration-500">
+          <h3 className="text-[22px] font-display font-extrabold mb-2 text-primary-dark">{title}</h3>
+          <p className="text-[14px] md:text-[15px] text-text-secondary leading-[1.6] font-medium">{description}</p>
+        </div>
       </div>
     </motion.div>
   )
