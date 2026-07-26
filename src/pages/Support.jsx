@@ -49,7 +49,7 @@ function Support() {
 
           {/* Phone Card */}
           <a 
-            href="tel:+639393991289" 
+            href="tel:+639602144502" 
             className="bg-white p-8 rounded-[24px] border border-border/40 shadow-sm hover:shadow-md transition-all duration-300 group outline-none focus-visible:ring-4 focus-visible:ring-primary/20"
           >
             <div className="w-12 h-12 rounded-[14px] bg-success/10 text-success flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
@@ -57,7 +57,7 @@ function Support() {
             </div>
             <h3 className="text-[18px] font-display font-bold text-primary-dark mb-1">Call Us</h3>
             <p className="text-[15px] text-text-secondary">Need urgent help with an active order? Give us a call.</p>
-            <p className="mt-4 text-[14px] font-semibold text-primary group-hover:text-primary-dark">+639393991289 &rarr;</p>
+            <p className="mt-4 text-[14px] font-semibold text-primary group-hover:text-primary-dark">+639602144502 &rarr;</p>
           </a>
 
           {/* Location Card */}
