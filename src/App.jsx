@@ -165,8 +165,15 @@ function App() {
           transition={{ duration: 1, delay: 0.1, type: "spring", bounce: 0.4 }}
         >
           {/* Mockup Container */}
-          <div className="relative z-10 w-full aspect-[1/2] rounded-[44px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border-[10px] border-white bg-white">
-            <img src="/mockup.jpg" alt="Morpho Cafe App Interface" className="w-full h-full object-cover scale-[1.3] origin-center object-[50%_30%]" />
+          <div className="relative z-10 w-full aspect-[1/2] rounded-[44px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border-[10px] border-white bg-white flex items-center justify-center">
+            <video 
+              src="/promo-video.mp4" 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="w-full h-full object-cover origin-center" 
+            />
           </div>
           
           {/* Floating Organic Cards */}
@@ -228,6 +235,87 @@ function App() {
               title="Good Vibes, Anywhere"
               description="Save your favorites, track your orders easily, and unlock exclusive app-only deals and promos."
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Morpho Wallet Section */}
+      <section id="wallet" className="py-20 md:py-32 px-6 relative bg-[#013E37] text-white overflow-hidden">
+        {/* Background glow effects */}
+        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#A3E635]/20 blur-[80px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white/10 blur-[80px] rounded-full pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20 relative z-10">
+          <div className="flex-1 lg:pr-10 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-[#A3E635] font-bold text-[13px] px-4 py-2 rounded-full mb-6 border border-white/20 uppercase tracking-widest">
+              <ion-icon name="wallet" style={{ fontSize: '16px' }}></ion-icon>
+              <span>Introducing</span>
+            </div>
+            <h2 className="text-[32px] md:text-[44px] font-display font-extrabold tracking-tight leading-[1.15] mb-6">
+              The <span className="text-[#A3E635]">Morpho Wallet</span>
+            </h2>
+            <p className="text-[16px] md:text-[18px] text-white/80 mb-8 leading-[1.6] max-w-lg mx-auto lg:mx-0">
+              Your personal cafe companion. Earn points, redeem rewards, and enjoy seamless transactions with your built-in digital loyalty card.
+            </p>
+            
+            <div className="grid sm:grid-cols-2 gap-6 text-left max-w-lg mx-auto lg:mx-0">
+              <div className="bg-white/5 border border-white/10 rounded-[20px] p-5 backdrop-blur-sm">
+                <div className="w-10 h-10 rounded-full bg-[#A3E635]/20 flex items-center justify-center text-[#A3E635] mb-4">
+                  <ion-icon name="scan" style={{ fontSize: '20px' }}></ion-icon>
+                </div>
+                <h3 className="font-bold text-[16px] mb-2">Scan & Earn</h3>
+                <p className="text-[13px] text-white/60 leading-relaxed">Show your unique QR code at the counter to easily collect or redeem points with every order.</p>
+              </div>
+              <div className="bg-white/5 border border-white/10 rounded-[20px] p-5 backdrop-blur-sm">
+                <div className="w-10 h-10 rounded-full bg-[#A3E635]/20 flex items-center justify-center text-[#A3E635] mb-4">
+                  <ion-icon name="card" style={{ fontSize: '20px' }}></ion-icon>
+                </div>
+                <h3 className="font-bold text-[16px] mb-2">Cashless Payments</h3>
+                <p className="text-[13px] text-white/60 leading-relaxed">Top up your wallet balance for faster checkout and exclusive in-app promos.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="flex-1 w-full max-w-[400px] mx-auto perspective-[1000px]">
+            {/* 3D tilted card representation */}
+            <motion.div 
+              initial={{ rotateY: 15, rotateX: 10, scale: 0.9, opacity: 0 }}
+              whileInView={{ rotateY: -15, rotateX: 5, scale: 1, opacity: 1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="relative w-full aspect-[1.6/1] rounded-[24px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-6 bg-gradient-to-br from-white/[0.15] to-white/[0.02] backdrop-blur-2xl border border-white/20 flex flex-col justify-between overflow-hidden"
+            >
+                <div className="absolute -top-10 -right-10 w-[150px] h-[150px] bg-[#A3E635]/30 blur-[50px] rounded-full pointer-events-none"></div>
+                <div className="absolute -bottom-10 -left-10 w-[150px] h-[150px] bg-[#013E37]/50 blur-[50px] rounded-full pointer-events-none"></div>
+                
+                <div className="relative z-10 flex justify-between items-start">
+                    <div className="flex flex-col">
+                        <div className="flex items-center gap-1 mb-1 text-white/70">
+                            <p className="text-[10px] font-bold uppercase tracking-widest">Morpho Wallet</p>
+                        </div>
+                        <p className="text-[32px] font-black font-display tracking-tight text-white drop-shadow-sm">₱1,250.00</p>
+                    </div>
+                    
+                    <div className="relative bg-white rounded-[14px] p-2 shadow-lg flex flex-col items-center">
+                        <div className="w-14 h-14 bg-[#013E37] flex items-center justify-center rounded-[8px]">
+                           <ion-icon name="qr-code-outline" style={{ fontSize: '32px', color: 'white' }}></ion-icon>
+                        </div>
+                        <div className="absolute -bottom-3 bg-[#A3E635] text-[#013E37] px-2.5 py-0.5 rounded-full shadow-md flex items-center gap-1 border-2 border-white">
+                            <span className="text-[9px] font-bold uppercase tracking-wider">Scan</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="relative z-10 mt-8 pt-4 border-t border-white/20 flex justify-between items-end">
+                    <div>
+                        <p className="text-[14px] font-semibold text-white/90">Coffee Lover</p>
+                        <p className="text-[12px] text-white/60">0912 345 6789</p>
+                    </div>
+                    <div className="text-right">
+                        <p className="text-[10px] font-black text-white/40 uppercase tracking-widest">MORPHO-10293</p>
+                    </div>
+                </div>
+            </motion.div>
           </div>
         </div>
       </section>
